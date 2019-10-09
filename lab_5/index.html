@@ -281,7 +281,10 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
-    var country_var = countries
+    sessionStorage.setItem("json_item", JSON.stringify(countries))
+    const str = sessionStorage.getItem("json_item");
+    const json = JSON.parse(str);
+    var country_varss = json
   </script>
 </body>
 
