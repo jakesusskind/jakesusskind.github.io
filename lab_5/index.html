@@ -11,7 +11,9 @@
     <div class="wrapper">
       <div class="header">Test JSON page</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log(countries);">Click me to replace list entries</button>
+      <button class="button" onclick="for (const [key, value] of Object.entries(country_var).slice(0,50)) {
+        console.log(value.name) ;
+      }">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
           <li>Delete and re-clone the class repository</li>
@@ -279,6 +281,7 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+    var country_var = countries
   </script>
 </body>
 
