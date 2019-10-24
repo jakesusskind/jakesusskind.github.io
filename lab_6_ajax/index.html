@@ -20,8 +20,23 @@
       fetch('ajax_sample.json')
         .then(res => res.json())
         .then(res => res.map(c => c.name))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(names => {
+        for(let i = 0; i < 15; i ++){
+        const selectNumber = getRandomIntInclusive(0, 242);
+        let el = document.createElement("li");
+        el.innerText = i[selectNumber];
+        return names;
+       
+        
+        function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+       
     }
+      }})
+        .then(thing => {document.querySelector(".content").innerText = thing
+    })};
   </script>
 </body>
 
