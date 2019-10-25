@@ -11,7 +11,10 @@
     <div class="wrapper">
       <div class="header">Test AJAX page</div>
       <button class="button" onclick="loadData()">Load Some JSON</button>
-      <div class="content"></div>
+      
+      <div class="content">
+        <ol class = "country_list"></ol>
+      </div>
       <div class="footer"></div>
     </div>
   </div>
@@ -19,24 +22,28 @@
     function loadData() {
       fetch('ajax_sample.json')
         .then(res => res.json())
-        .then(res => res.map(c => c.name))
-        .then(names => {
-        for(let i = 0; i < 15; i ++){
-        const selectNumber = getRandomIntInclusive(0, 242);
-        let el = document.createElement("li");
-        el.innerText = i[selectNumber];
-        return names;
-       
-        
-        function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-       
+        .then(res => res.map(c => ({ name: c.name, code: c.code}))) // only one thing can be returned here, but you can use more than one property in it
+        .then(data => {
+          const countrylist = document.querySelector(".country_list");
+          countrylist.innerHTML = "";
+          for(let i = 0; i < 15; i ++){
+          const randomcountry = 
+            data[Math.floor(Math.random() * data.length)]
+
+          
+          const el = document.createElement("li");
+          el.innerHTML = randomcountry.name + " " + randomcountry.code;
+          countrylist.appendChild(el);
+
+
+          // document.querySelector(".content").innerText = data;
+
+          // you can do work here
+          // all the work from the function in lab 5
+          // that loads data into your HTML
+          // you MUST return from a closed fat-arrow
+        }})
     }
-      }})
-        .then(thing => {document.querySelector(".content").innerText = thing
-    })};
   </script>
 </body>
 
